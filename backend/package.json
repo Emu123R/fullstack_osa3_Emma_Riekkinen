@@ -14,7 +14,6 @@
     "debloy:full": "npm run build:ui && git add . && git commit - uibuild && git push"
   },
   "dependencies": {
-    "cors": "^2.8.5",
     "express": "^5.1.0"
   }
 }
