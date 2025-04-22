@@ -1,13 +1,19 @@
 const express = require('express');
-const { readFile } = require('fs').promises;
+const { readFile } = require('fs');
 const http = require('http');
 const app = express();
 
-app.get('/', async (req, res) => {
-    response.send( await readFile('home.html', 'utf8'));
+app.get('/', (req, res) => {
+    readFile('./home.html', 'utf8', (err, html) => {
+        if (err) {
+            res.status(500).send('Virhe tiedoston lukemisessa');
+        }
+
+        res.send(html)
+    })
 });
 
-app.listen(process.env.DATABASE_PORT || 3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Palvelin kuuntelee: http://localhost:3000');
 });
 
